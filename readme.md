@@ -1,7 +1,8 @@
 ## Usage
 
 ```python
-    pprint_core_module_info()
+from ovos_config_assistant.module_helpers import pprint_core_module_info
+pprint_core_module_info()
 """
 ## Mycroft module info
      can import mycroft     : True
@@ -11,9 +12,19 @@
 Module: neon_core
      can import neon_core     : False
      neon_core module location: None
+     xdg compliance            : True
+     base xdg folder           : neon
+     mycroft config filename   : neon.conf
+     default mycroft.conf path :
+          /home/user/NeonCore/neon_core/configuration/neon.conf
 Module: hivemind
      can import hivemind     : False
      hivemind module location: None
+     xdg compliance            : True
+     base xdg folder           : hivemind
+     mycroft config filename   : hivemind.conf
+     default mycroft.conf path :
+          /home/user/PycharmProjects/ovos_workspace/ovos-core/.venv/lib/python3.9/site-packages/mycroft/configuration/mycroft.conf
 
 ## Downstream module overrides:
 Module: neon_speech
@@ -34,6 +45,7 @@ Module: hivemind_voice_satellite
      hivemind_voice_satellite module location: /home/user/HiveMind-voice-sat/hivemind_voice_satellite
 """
 
+from ovos_config_assistant.config_helpers import pprint_ovos_conf
 pprint_ovos_conf()
 """
 ## OVOS Configuration
