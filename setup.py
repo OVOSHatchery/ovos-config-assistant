@@ -7,7 +7,7 @@ BASEDIR = os.path.abspath(os.path.dirname(__file__))
 def get_version():
     """ Find the version of the package"""
     version = None
-    version_file = os.path.join(BASEDIR, 'ovos_config_assistant', 'version', '__init__.py')
+    version_file = os.path.join(BASEDIR, 'ovos_config_assistant', 'version.py')
     major, minor, build, alpha = (None, None, None, None)
     with open(version_file) as f:
         for line in f:
@@ -43,7 +43,7 @@ def required(requirements_file):
 setup(
     name='ovos-config-assistant',
     version=get_version(),
-    packages=['ovos_config_assistant', 'ovos_config_assistant.versioning'],
+    packages=['ovos_config_assistant'],
     url='https://github.com/OpenVoiceOS/ovos-config-assistant',
     install_requires=required("requirements/requirements.txt"),
     include_package_data=True,
