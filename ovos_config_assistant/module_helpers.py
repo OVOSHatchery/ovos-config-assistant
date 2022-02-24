@@ -22,24 +22,28 @@ def pprint_core_module_info():
     cores = config.get("module_overrides") or {}
     if cores:
         print("\n## Downstream ovos.conf overrides")
-        for k in cores:
+        for k, v in cores.items():
             spec = get_module_path(k)
             print("Module:", k)
             print(f"     can import {k}     :", spec is not None)
             print(f"     {k} module location:", spec)
-        # print(pformat(cores[k]))
+
+            module_conf = {**config, **v}
+            print("     xdg compliance            :", module_conf["xdg"])
+            print("     base xdg folder           :", module_conf["base_folder"])
+            print("     mycroft config filename   :", module_conf["config_filename"])
+            print("     default mycroft.conf path :")
+            print("         ", module_conf["default_config_path"])
 
         subcores = config.get("submodule_mappings") or {}
         if subcores:
             print("\n## Downstream module overrides:")
             for k, v in subcores.items():
                 spec = get_module_path(k)
-                # print(spec)
                 print("Module:", k)
                 print("     uses config from   :", v)
                 print(f"     can import {k}     :", spec is not None)
                 print(f"     {k} module location:", spec)
-            # print(pformat(cores[v]))
 
 
 if __name__ == "__main__":
