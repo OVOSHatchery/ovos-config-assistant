@@ -6,7 +6,8 @@ pprint_core_module_info()
 """
 ## Mycroft module info
      can import mycroft     : True
-     mycroft module location: /home/user/ovos-core/mycroft/__init__.py
+     is ovos-core           : True
+     mycroft module location: /home/user/ovos-core/mycroft
 
 ## Downstream ovos.conf overrides
 Module: neon_core

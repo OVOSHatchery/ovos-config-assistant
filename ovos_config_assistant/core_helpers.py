@@ -76,3 +76,42 @@ def setup_hivemind():
     cfg = merge_dict(cfg, _NEW_OVOS_CONFIG)
     with open(OVOS_CONFIG, "w") as f:
         json.dump(cfg, f, indent=4, ensure_ascii=True)
+
+
+def setup_chatterbox():
+    """
+    setup config for chatterbox
+    """
+    OVOS_CONFIG = join(xdg_config_home(), "OpenVoiceOS", "ovos.conf")
+    _NEW_OVOS_CONFIG = {
+        "module_overrides": {
+            "chatterbox": {
+                "xdg": False,
+                "base_folder": "chatterbox",
+                "config_filename": "chatterbox.conf",
+                "default_config_path": "/opt/chatterbox/chatterbox.conf"
+            }
+        },
+        # if these services are running standalone (core not in venv)
+        # config them to use core config from above
+        "submodule_mappings": {
+            "chatterbox_playback": "chatterbox",
+            "chatterbox_stt": "chatterbox",
+            "chatterbox_blockly": "chatterbox",
+            "chatterbox_admin": "chatterbox",
+            "chatterbox_gpio_service": "neon_core"
+        }
+    }
+    cfg = {}
+    try:
+        with open(OVOS_CONFIG) as f:
+            cfg = json.load(f)
+    except FileNotFoundError:
+        pass
+    except Exception as e:
+        LOG.error(e)
+
+    cfg = merge_dict(cfg, _NEW_OVOS_CONFIG)
+    with open(OVOS_CONFIG, "w") as f:
+        json.dump(cfg, f, indent=4, ensure_ascii=True)
+

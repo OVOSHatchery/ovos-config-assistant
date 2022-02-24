@@ -6,10 +6,10 @@ from ovos_utils.configuration import get_ovos_config
 def get_module_path(module_name):
     spec = find_spec(module_name)
     if spec:
-        if spec.origin:
-            return spec.origin
         if spec.submodule_search_locations:
             return spec.submodule_search_locations[0]
+        if spec.origin:
+            return spec.origin
 
 
 def pprint_core_module_info():
@@ -17,6 +17,7 @@ def pprint_core_module_info():
     spec = get_module_path("mycroft")
     print("\n## Mycroft module info")
     print("     can import mycroft     :", spec is not None)
+    print("     is ovos-core           :", "/ovos-core/mycroft" in spec)
     print("     mycroft module location:", spec)
 
     cores = config.get("module_overrides") or {}
