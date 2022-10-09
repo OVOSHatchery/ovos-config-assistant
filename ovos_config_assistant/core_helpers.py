@@ -114,4 +114,3 @@ def setup_chatterbox():
     cfg = merge_dict(cfg, _NEW_OVOS_CONFIG)
     with open(OVOS_CONFIG, "w") as f:
         json.dump(cfg, f, indent=4, ensure_ascii=True)
-

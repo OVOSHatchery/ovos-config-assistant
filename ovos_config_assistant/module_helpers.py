@@ -1,6 +1,6 @@
 from importlib.util import find_spec
 
-from ovos_utils.configuration import get_ovos_config
+from ovos_config import get_ovos_config
 
 
 def get_module_path(module_name):

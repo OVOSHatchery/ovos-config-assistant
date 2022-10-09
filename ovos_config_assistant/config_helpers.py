@@ -1,4 +1,5 @@
-from ovos_utils.configuration import get_ovos_config, get_ovos_default_config_paths
+from ovos_config import get_ovos_config
+from ovos_config.meta import get_ovos_default_config_paths
 
 
 def pprint_ovos_conf():
