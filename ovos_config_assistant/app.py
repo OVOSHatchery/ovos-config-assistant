@@ -24,7 +24,8 @@ def oauth_callback(oauth_id):
     params = dict(request.args)
     code = params["code"]
 
-    data = JsonStorageXDG("ovos_oauth_apps")[oauth_id]
+    oauth_store = JsonStorageXDG("ovos_oauth_apps")
+    data = oauth_store[oauth_id]
     client_id = data["client_id"]
     client_secret = data["client_secret"]
     token_endpoint = data["token_endpoint"]
@@ -43,13 +44,14 @@ def oauth_callback(oauth_id):
         data=body,
         auth=(client_id, client_secret),
     ).json()
-
-    with JsonStorageXDG("ovos_oauth") as db:
-        db.add_token(oauth_id, token_response)
+    print(oauth_id)
+    print(token_response)
+    data['token_response'] = token_response
+    oauth_store.store()
 
     return params
 
 
 def main(port=36535, debug=True):
-    app.run(port=port, debug=debug)
+    app.run(host='0.0.0.0', port=port, debug=debug)
     # start_server(start, port=port, debug=debug)
