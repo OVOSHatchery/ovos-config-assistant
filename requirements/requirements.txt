@@ -3,3 +3,4 @@ pywebio
 cutecharts
 oauthlib~=3.0
 ovos_backend_client
+flask~=2.2
